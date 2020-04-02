@@ -1,6 +1,6 @@
 ---
 title: "STAT 385 - Homework 6"
-author: "Your name - Your NetID"
+author: "Ali Asghar - aasgha2"
 date: "Due 11:59 PM, 3/30/2020"
 output:
   html_document:
@@ -53,14 +53,16 @@ str(diamonds)
   
 ```{r fig.align='center'}
 # add your graph here
-
+ggplot(data = diamonds) +
+  geom_point(mapping = aes(x = carat, y = price))
 ```
 
 - **(b) With the above graph**, adjust the transparency level of ALL the points so we can see clearly where the clusters are:
 
 ```{r fig.align='center'}
 # add your graph here
-
+ggplot(data = diamonds) +
+  geom_point(mapping = aes(x = carat, y = price), alpha = 0.5)
 ```
 
 - **(c) Now create a new plot**, graph a scatterplot of `price` vs `carat`, and color the points BY the quality of the cut (`cut`)!
@@ -68,11 +70,12 @@ str(diamonds)
 
 ```{r fig.align='center'}
 # add your graph here
-
+ggplot(data = diamonds) +
+  geom_point(mapping = aes(x = carat, y = price, color = cut))
 ```
 
 - **(d) What can you conclude based on the above graph?**
-  - **ANSWER:** 
+  - **ANSWER: A diamond of lower carat value tends to have better quality cuts** 
   
 ### Boxplot
 
@@ -83,7 +86,9 @@ str(diamonds)
   
 ```{r fig.align='center'}
 # add your graph here
-
+sp <- ggplot(data = diamonds) +
+  geom_boxplot(mapping = aes(x = cut, y = carat, color = cut))
+sp
 ```
 
 - **(b) With the plot above**, rotate it so `cut` is on the $y$-axis and `carat` is on the $x$-axis.
@@ -91,14 +96,16 @@ str(diamonds)
   
 ```{r fig.align='center'}
 # add your graph here
-
+sp + coord_flip()
 ```
 
 - **(c) With the plot from (b)**, color the boxplot dark blue.
 
 ```{r fig.align='center'}
 # add your graph here
-
+sp2 <- ggplot(data = diamonds) +
+  geom_boxplot(mapping = aes(x = cut, y = carat), color = "dark blue")
+sp2 + coord_flip()
 ```
 
 ### Histogram
@@ -109,21 +116,25 @@ str(diamonds)
   
 ```{r fig.align='center'}
 # add your graph here
-
+ggplot(data = diamonds, aes(x=price)) +
+  geom_histogram(binwidth=100)
 ```
 
 - **(b) With the plot above**, color the bars dark orange.
   
 ```{r fig.align='center'}
 # add your graph here
-
+bp <- ggplot(data = diamonds, aes(x=price)) +
+  geom_histogram(binwidth=100, color = "dark orange", fill = "dark orange")
+bp
 ```
 
 - **(c) With the plot from (b)**, change the number of bins to 50.
 
 ```{r fig.align='center'}
 # add your graph here
-
+ggplot(data = diamonds, aes(x=price)) +
+  geom_histogram(binwidth=50, color = "dark orange", fill = "dark orange")
 ```
 
 
@@ -153,6 +164,9 @@ flights <- read_csv(file = "https://nkha149.github.io/stat385-sp2020/files/data/
 
 - **(a)** How does the **average** departure delay time differ among days of the week?
 
+ggplot(data = diamonds, aes(x=price)) +
+  geom_histogram(binwidth=50, color = "dark orange", fill = "dark orange")
+  
 - **(b)** Airlines are grouped into different terminals. There is a belief that certain terminals have better taxing out time. How does **median** taxi out time differ among diferrent airlines?
 
 
