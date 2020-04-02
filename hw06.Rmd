@@ -177,7 +177,14 @@ ggplot(data = data1) +
   
 - **(b)** Airlines are grouped into different terminals. There is a belief that certain terminals have better taxing out time. How does **median** taxi out time differ among diferrent airlines?
 
-
+```{r}
+data2 <- flights %>%
+  group_by(AIRLINE) %>%
+  summarise(median_taxi_out = median(TAXI_OUT, na.rm = TRUE),
+            n = n())
+ggplot(data = data2, aes(x = AIRLINE, y = median_taxi_out)) +
+  geom_bar(stat = "identity", fill= "blue")
+```
 
 
 
