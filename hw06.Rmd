@@ -164,8 +164,16 @@ flights <- read_csv(file = "https://nkha149.github.io/stat385-sp2020/files/data/
 
 - **(a)** How does the **average** departure delay time differ among days of the week?
 
-ggplot(data = diamonds, aes(x=price)) +
-  geom_histogram(binwidth=50, color = "dark orange", fill = "dark orange")
+
+
+```{r}
+data1 <- flights %>%
+  group_by(DAY_OF_WEEK) %>%
+  summarise(ave_delay = mean(DEPARTURE_DELAY, na.rm = TRUE),
+            n = n())
+ggplot(data = data1) +
+  geom_point(mapping = aes(x = DAY_OF_WEEK, y = ave_delay))
+```
   
 - **(b)** Airlines are grouped into different terminals. There is a belief that certain terminals have better taxing out time. How does **median** taxi out time differ among diferrent airlines?
 
